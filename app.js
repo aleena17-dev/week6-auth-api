@@ -8,6 +8,8 @@ const taskRoutes = require("./routes/taskRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const ticketRoutes = require("./routes/ticketRoutes");
+
 const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
@@ -48,7 +50,7 @@ app.get("/health", (req, res) => {
   res.status(200).json({
     success: true,
     status: "ok",
-    message: "TaskFlow API is running",
+    message: "SmartCampus API is running",
   });
 });
 
@@ -57,6 +59,7 @@ app.get("/health", (req, res) => {
 // ===============================
 
 app.use("/api/tasks", taskRoutes);
+
 app.use("/api/categories", categoryRoutes);
 
 // Week 6 Authentication
@@ -64,6 +67,9 @@ app.use("/api/auth", authLimiter, authRoutes);
 
 // Week 6 Admin
 app.use("/api/admin", adminRoutes);
+
+// Capstone Ticket System
+app.use("/api/tickets", ticketRoutes);
 
 // ===============================
 // 404 Route Handler
